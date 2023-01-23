@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class Ciudadano {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ciud_sec")
-	@SequenceGenerator(name = "cuid_sec", sequenceName = "ciud_sec", allocationSize = 1)
+	@SequenceGenerator(name = "ciud_sec", sequenceName = "ciud_sec", allocationSize = 1)
 	@Column(name = "ciud_id")
 	private Integer id;
 	@Column(name = "ciud_nombre")

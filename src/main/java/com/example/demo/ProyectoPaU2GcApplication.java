@@ -32,33 +32,45 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-//		Error: object references an unsaved transient instance - save the transient instance before flushing
-//		Ciudadano ciu=new Ciudadano();
-//		ciu.setNombre("Willian");
-//		ciu.setApellido("Conlago");
-//		Empleado emp=new Empleado();
-//		emp.setSalario(new BigDecimal(20));
-//		emp.setFechaIngreso(LocalDateTime.now());
-//		emp.setCiudadano(ciu);
-//		ciu.setEmpleado(emp);
-//		this.iEmpleadoService.guardar(emp);
-//		this.iCiudadanoService.guardar(ciu);
-
-		//Ciudadano no tiene la columna empleado (prescindible ? )
-		Ciudadano ciu=new Ciudadano();
-		ciu.setNombre("Willian");
-		ciu.setApellido("Conlago");
-		ciu.setEmpleado(null);
-		this.iCiudadanoService.guardar(ciu);
-		Empleado emp=new Empleado();
-		emp.setSalario(new BigDecimal(20));
-		emp.setFechaIngreso(LocalDateTime.now());
-		emp.setCiudadano(ciu);
-		this.iEmpleadoService.guardar(emp);
-		ciu.setEmpleado(emp);
-		this.iCiudadanoService.modificar(ciu);
-		System.out.println("El ciudadano de id 1 es:"+ this.iCiudadanoService.encontrar(1));
-		System.out.println("El empleado de id 1 es:"+ this.iEmpleadoService.encontrar(1));
+//		//Segundo Ejemplo: Solo insertar un empleado sin cascade
+//		Ciudadano ciu2=new Ciudadano();
+//		ciu2.setNombre("Juan");
+//		ciu2.setApellido("Padilla");
+//		
+//		Empleado emp2=new Empleado();
+//		emp2.setSalario(new BigDecimal(100));
+//		emp2.setFechaIngreso(LocalDateTime.now());
+//		emp2.setCiudadano(ciu2);
+//		this.iCiudadanoService.guardar(ciu2);
+//		ciu2.setEmpleado(emp2);
+//		this.iEmpleadoService.guardar(emp2);
+		
+			
+		//Tercer ejemplo
+		//Segundo Ejemplo: Solo insertar un empleado
+//				Ciudadano ciu2=new Ciudadano();
+//				ciu2.setNombre("Juan");
+//				ciu2.setApellido("Padilla");
+//				
+//				Empleado emp2=new Empleado();
+//				emp2.setSalario(new BigDecimal(100));
+//				emp2.setFechaIngreso(LocalDateTime.now());
+//				emp2.setCiudadano(ciu2);
+//				ciu2.setEmpleado(emp2);
+//				this.iEmpleadoService.guardar(emp2);
+				//Esta linea es innecesaria ya que la de arriba ya realiza la insercion
+				//this.iCiudadanoService.guardar(ciu2);
+				//si se ejecuta los id son iguales a los de arriba creando duplicaciond e identidades
+				//debido al cascade que se uso en ambas clases
+				//terminando en un error
+				//esos id son asignados por jakarta
+				//Las dos cumplen la misma funcion, por lo que cualquiera de las dos es usable
+				
+		//Relacion uno a muchos
+		
+		
+		
+		
 	}
 
 }

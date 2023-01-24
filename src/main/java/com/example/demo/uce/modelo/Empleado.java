@@ -3,6 +3,7 @@ package com.example.demo.uce.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,8 @@ public class Empleado {
 	@Column(name = "empl_fecha_ingreso")
 	private LocalDateTime fechaIngreso;
 	// Uno a uno
-	@OneToOne
+	//@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "empl_id_ciudadano")
 	private Ciudadano ciudadano;
 	// GET Y SET

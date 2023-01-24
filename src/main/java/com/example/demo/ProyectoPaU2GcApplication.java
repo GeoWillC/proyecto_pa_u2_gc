@@ -1,19 +1,19 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Ciudadano;
-import com.example.demo.uce.modelo.Empleado;
-import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.uce.modelo.Habitacion;
+import com.example.demo.uce.modelo.Hotel;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
+import com.example.demo.uce.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoPaU2GcApplication implements CommandLineRunner{
@@ -24,6 +24,8 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 	private ICiudadanoService iCiudadanoService;
 	@Autowired
 	private IEmpleadoService iEmpleadoService;
+	@Autowired
+	private IHotelService iHotelService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2GcApplication.class, args);
@@ -66,10 +68,33 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 				//esos id son asignados por jakarta
 				//Las dos cumplen la misma funcion, por lo que cualquiera de las dos es usable
 				
-		//Relacion uno a muchos
-		
-		
-		
+		//Relacion uno a muchos}
+		//Hotel
+		Hotel hotel=new Hotel();
+		hotel.setDireccion("Amazonas ");
+		hotel.setNombre("Hilton");
+		//Habitaciones
+		List <Habitacion> habitacion=new ArrayList<>();
+		Habitacion habitacion1=new Habitacion();
+		habitacion1.setHotel(hotel);
+		habitacion1.setNumero("A10");
+		habitacion.add(habitacion1);
+		Habitacion habitacion2=new Habitacion();
+		habitacion2.setHotel(hotel);
+		habitacion2.setNumero("A11");
+		habitacion.add(habitacion2);
+		Habitacion habitacion3=new Habitacion();
+		habitacion3.setHotel(hotel);
+		habitacion3.setNumero("A12");
+		habitacion.add(habitacion3);
+		//Lista
+		//Inserto
+		hotel.setHabitacion(habitacion);
+//		this.iHotelService.guardar(hotel);
+//		//this.iHotelService.eliminar(2);
+//		hotel.setDireccion("Shyris");
+//		this.iHotelService.modificar(hotel);
+		this.iHotelService.encontrar(1);
 		
 	}
 

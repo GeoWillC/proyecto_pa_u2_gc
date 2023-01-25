@@ -22,7 +22,7 @@ public class Habitacion {
 	@Column(name="habi_numero")
 	private String numero;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="habi_id_hotel")
 	private Hotel hotel;
 	

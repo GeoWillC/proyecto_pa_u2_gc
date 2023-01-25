@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.example.demo.uce.modelo.Hotel;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
+import com.example.demo.uce.service.IHabitacionService;
 import com.example.demo.uce.service.IHotelService;
 
 @SpringBootApplication
@@ -26,6 +28,9 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 	private IEmpleadoService iEmpleadoService;
 	@Autowired
 	private IHotelService iHotelService;
+	
+	@Autowired
+	private IHabitacionService iHabitacionService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2GcApplication.class, args);
@@ -70,32 +75,46 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 				
 		//Relacion uno a muchos}
 		//Hotel
-		Hotel hotel=new Hotel();
-		hotel.setDireccion("Amazonas ");
-		hotel.setNombre("Hilton");
-		//Habitaciones
-		List <Habitacion> habitacion=new ArrayList<>();
-		Habitacion habitacion1=new Habitacion();
-		habitacion1.setHotel(hotel);
-		habitacion1.setNumero("A10");
-		habitacion.add(habitacion1);
-		Habitacion habitacion2=new Habitacion();
-		habitacion2.setHotel(hotel);
-		habitacion2.setNumero("A11");
-		habitacion.add(habitacion2);
-		Habitacion habitacion3=new Habitacion();
-		habitacion3.setHotel(hotel);
-		habitacion3.setNumero("A12");
-		habitacion.add(habitacion3);
-		//Lista
-		//Inserto
-		hotel.setHabitacion(habitacion);
+//		Hotel hotel=new Hotel();
+//		hotel.setDireccion("Amazonas");
+//		hotel.setNombre("Hilton");
+//		//Habitaciones
+//		List <Habitacion> habitacion=new ArrayList<>();
+//		Habitacion habitacion1=new Habitacion();
+//		habitacion1.setHotel(hotel);
+//		habitacion1.setNumero("A10");
+//		habitacion.add(habitacion1);
+//		Habitacion habitacion2=new Habitacion();
+//		habitacion2.setHotel(hotel);
+//		habitacion2.setNumero("A11");
+//		habitacion.add(habitacion2);
+//		Habitacion habitacion3=new Habitacion();
+//		habitacion3.setHotel(hotel);
+//		habitacion3.setNumero("A12");
+//		habitacion.add(habitacion3);
+//		//Lista
+//		//Inserto
+//		hotel.setHabitacion(habitacion);
 //		this.iHotelService.guardar(hotel);
-//		//this.iHotelService.eliminar(2);
+//		this.iHotelService.eliminar(1);
 //		hotel.setDireccion("Shyris");
 //		this.iHotelService.modificar(hotel);
-		this.iHotelService.encontrar(1);
 		
+
+//		//Eliminarse la A11
+//		this.iHotelService.encontrar(3);
+//		this.iHabitacionService.encontrar(11);
+//		this.iHabitacionService.eliminar(11);
+		//Cascade une las dos tablas por lo que para insertar un nuevo hotel es necesario quitar el cascade
+		//deberia haber una forma de intercalar entre las dos formas
+//		detached entity passed to persist: com.example.demo.uce.modelo.Hotel
+		
+		//Consultar hotel y sus habitaciones
+		
+		Hotel hotel=this.iHotelService.encontrar(4);
+		System.out.println(hotel);
+		
+				
 	}
 
 }

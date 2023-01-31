@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,14 +9,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Autor;
-import com.example.demo.uce.modelo.Libro;
+import com.example.demo.uce.modelo.Cliente;
+import com.example.demo.uce.modelo.Vehiculo;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
 import com.example.demo.uce.service.IHabitacionService;
 import com.example.demo.uce.service.IHotelService;
 import com.example.demo.uce.service.ILibroService;
+import com.example.demo.uce.service.IVehiculoService;
 
 @SpringBootApplication
 public class ProyectoPaU2GcApplication implements CommandLineRunner{
@@ -32,6 +34,8 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 	private ILibroService iLibroService;
 	@Autowired
 	private IHabitacionService iHabitacionService;
+	@Autowired
+	private IVehiculoService iVehiculoService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2GcApplication.class, args);
@@ -118,25 +122,78 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 				
 		//Insertar libro
 		
-		Set<Autor> autores = new HashSet<Autor>();
-		Autor autor1=new Autor();
-		autor1.setNombre("O");
+//		Set<Autor> autores = new HashSet<Autor>();
+//		Autor autor1=new Autor();
+//		autor1.setNombre("O");
+//		
+//		Autor autor2=new Autor();
+//		autor2.setNombre("D");
+//		
+//		Autor autor3=new Autor();
+//		autor3.setNombre("J");
+//		
+//		autores.add(autor1);
+//		autores.add(autor2);
+//		autores.add(autor3);
+//		
+//		Libro libro=new Libro();
+//		libro.setNombre("analisis");
+//		libro.setEditorial("Norma");
+//		libro.setAutores(autores);
+//		this.iLibroService.agregar(libro);
 		
-		Autor autor2=new Autor();
-		autor2.setNombre("D");
+		//Insertar vehiculos 
+		Vehiculo vehiculo=new Vehiculo();
+		vehiculo.setCategoria("A");
+		vehiculo.setMarca("Toyota");
+		vehiculo.setNumeroSerie("A12312313");
+		vehiculo.setPrecioDia(new BigDecimal(50));
+//		
+		Vehiculo vehiculo2=new Vehiculo();
+		vehiculo2.setCategoria("C");
+		vehiculo2.setMarca("Chevrolet");
+		vehiculo2.setNumeroSerie("B12312313");
+		vehiculo2.setPrecioDia(new BigDecimal(60));
+//		
+		Cliente cliente1=new Cliente();
+		cliente1.setApellido("Cuenca");
+		cliente1.setNombre("Juan");
+		cliente1.setTarjetaCredito("5540500001000004");
+		cliente1.setCedula("1751242661");
 		
-		Autor autor3=new Autor();
-		autor3.setNombre("J");
+		Cliente cliente2=new Cliente();
+		cliente2.setApellido("Perez");
+		cliente2.setNombre("Juan");
+		cliente2.setTarjetaCredito("5020470001370055");
+		cliente2.setCedula("1751242662");
 		
-		autores.add(autor1);
-		autores.add(autor2);
-		autores.add(autor3);
+		Cliente cliente3=new Cliente();
+		cliente3.setApellido("Marco");
+		cliente3.setNombre("Paez");
+		cliente3.setTarjetaCredito("5020080001000006");
+		cliente3.setCedula("1751242663");
 		
-		Libro libro=new Libro();
-		libro.setNombre("analisis");
-		libro.setEditorial("Norma");
-		libro.setAutores(autores);
-		this.iLibroService.agregar(libro);
+		Cliente cliente4=new Cliente();
+		cliente4.setApellido("Andrade");
+		cliente4.setNombre("Mario");
+		cliente4.setTarjetaCredito("4507670001000009");
+		cliente4.setCedula("1751242664");
+		
+		Set<Cliente> clientes=new HashSet<Cliente>();  
+		clientes.add(cliente1);
+		clientes.add(cliente2);
+		clientes.add(cliente3);
+		clientes.add(cliente4);
+		
+		vehiculo.setClientes(clientes);
+		
+		Set<Cliente> clientes2=new HashSet<Cliente>();
+		clientes2.add(cliente1);
+		clientes2.add(cliente3);
+		
+		this.iVehiculoService.agregar(vehiculo);
+//		vehiculo2.setClientes(clientes2);
+//		this.iVehiculoService.agregar(vehiculo2);
 		
 	}
 

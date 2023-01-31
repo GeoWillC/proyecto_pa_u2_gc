@@ -1,21 +1,21 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Habitacion;
-import com.example.demo.uce.modelo.Hotel;
+import com.example.demo.uce.modelo.Autor;
+import com.example.demo.uce.modelo.Libro;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
 import com.example.demo.uce.service.IHabitacionService;
 import com.example.demo.uce.service.IHotelService;
+import com.example.demo.uce.service.ILibroService;
 
 @SpringBootApplication
 public class ProyectoPaU2GcApplication implements CommandLineRunner{
@@ -28,7 +28,8 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 	private IEmpleadoService iEmpleadoService;
 	@Autowired
 	private IHotelService iHotelService;
-	
+	@Autowired
+	private ILibroService iLibroService;
 	@Autowired
 	private IHabitacionService iHabitacionService;
 	
@@ -110,11 +111,33 @@ public class ProyectoPaU2GcApplication implements CommandLineRunner{
 //		detached entity passed to persist: com.example.demo.uce.modelo.Hotel
 		
 		//Consultar hotel y sus habitaciones
-		
-		Hotel hotel=this.iHotelService.encontrar(4);
-		System.out.println(hotel);
-		
+//		
+//		Hotel hotel=this.iHotelService.encontrar(4);
+//		System.out.println(hotel);
+//		
 				
+		//Insertar libro
+		
+		Set<Autor> autores = new HashSet<Autor>();
+		Autor autor1=new Autor();
+		autor1.setNombre("O");
+		
+		Autor autor2=new Autor();
+		autor2.setNombre("D");
+		
+		Autor autor3=new Autor();
+		autor3.setNombre("J");
+		
+		autores.add(autor1);
+		autores.add(autor2);
+		autores.add(autor3);
+		
+		Libro libro=new Libro();
+		libro.setNombre("analisis");
+		libro.setEditorial("Norma");
+		libro.setAutores(autores);
+		this.iLibroService.agregar(libro);
+		
 	}
 
 }
